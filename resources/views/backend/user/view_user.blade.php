@@ -36,11 +36,13 @@
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>
-                                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm">
-                                                            <i class="fa fa-edit mr-1"></i> Edit
-                                                        </a>
                                                         @if(!in_array($user->user_type, ['admin']))
-                                                            <a href="{{ route('users.delete', $user->id) }}" class="btn btn-danger btn-sm" id="delete">
+                                                            <a href="{{ route('users.edit', $user->id) }}"
+                                                                class="btn btn-info btn-sm">
+                                                                <i class="fa fa-edit mr-1"></i> Edit
+                                                            </a>
+                                                            <a href="{{ route('users.delete', $user->id) }}"
+                                                                class="btn btn-danger btn-sm" id="delete">
                                                                 <i class="fa fa-trash mr-1"></i> Delete
                                                             </a>
                                                         @endif
