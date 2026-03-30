@@ -103,7 +103,8 @@
 				<li class="dropdown user user-menu">
 					<a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown"
 						title="User">
-						<img src="{{ asset('backend/images/no_image.jpg') }}" alt="">
+						<img src="{{ (!empty($user->image)) ? url('upload/user_images/' . $user->image) : url('upload/no_image.jpg') }}"
+							alt="User">
 					</a>
 					<ul class="dropdown-menu animated flipInX">
 						<li class="user-body">

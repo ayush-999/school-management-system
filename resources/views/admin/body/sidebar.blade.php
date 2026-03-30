@@ -29,7 +29,7 @@
       <li class="treeview">
         <a href="#">
           <i data-feather="edit"></i>
-          <span>Manage Users</span>
+          <span>Manage User</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
           </span>
@@ -44,14 +44,14 @@
       <li class="treeview">
         <a href="#">
           <i data-feather="user"></i>
-          <span>Components</span>
+          <span>Manage Profile</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-          <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
+          <li><a href="{{ route('profile.view') }}"><i class="ti-more"></i>Your Profile</a></li>
+          <li><a href="#"><i class="ti-more"></i>Change Password</a></li>
         </ul>
       </li>
 
