@@ -36,7 +36,7 @@
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>
-                                                        @if(!in_array($user->user_type, ['admin']))
+                                                        @if(!in_array($user->user_type, ['super_admin']))
                                                             <a href="{{ route('users.edit', $user->id) }}"
                                                                 class="btn btn-info btn-sm">
                                                                 <i class="fa fa-edit mr-1"></i> Edit

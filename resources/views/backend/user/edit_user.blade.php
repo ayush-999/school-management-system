@@ -33,6 +33,7 @@
                                                                 <option value="" selected="" disabled="">
                                                                     Select Role
                                                                 </option>
+                                                                <option value="super_admin" {{ $editData->user_type == 'super_admin' ? 'selected' : '' }}>Super Admin</option>
                                                                 <option value="admin" {{ $editData->user_type == 'admin' ? 'selected' : '' }}>Admin</option>
                                                                 <option value="user" {{ $editData->user_type == 'user' ? 'selected' : '' }}>User</option>
                                                             </select>

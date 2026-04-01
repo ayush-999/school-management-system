@@ -23,39 +23,22 @@
           <span>Dashboard</span>
         </a>
       </li>
-      
+
       <li class="header nav-small-cap">User Interface</li>
 
       <li class="treeview">
         <a href="#">
-          <i data-feather="edit"></i>
+          <i data-feather="user"></i>
           <span>Manage User</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{ route('users.view') }}"><i class="ti-more"></i>View Users</a></li>
-          {{-- <li><a href="{{ route('users.add') }}"><i class="ti-more"></i>Add Users</a></li> --}}
-        </ul>
-      </li>
-
-
-      <li class="treeview">
-        <a href="#">
-          <i data-feather="user"></i>
-          <span>Manage Profile</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-right pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
           <li><a href="{{ route('profile.view') }}"><i class="ti-more"></i>Your Profile</a></li>
-          <li><a href="#"><i class="ti-more"></i>Change Password</a></li>
+          <li><a href="{{ route('users.view') }}"><i class="ti-more"></i>View Users</a></li>
         </ul>
       </li>
-
-
     </ul>
   </section>
 

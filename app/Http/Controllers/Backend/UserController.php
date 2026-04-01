@@ -18,31 +18,7 @@ class UserController extends Controller
     {
         return view('backend.user.add_user');
     }
-
-    public function UserStore(Request $request)
-    {
-        // Validation
-        $validatedData = $request->validate([
-            'user_type' => 'required',
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-        ]);
-
-        $data = new User();
-        $data->user_type = $request->user_type;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->password = bcrypt($request->password);
-        $data->save();
-
-        $notification = array(
-            'message' => 'User created successfully.',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('users.view')->with($notification);
-    }
-
+    
     public function UserEdit($id)
     {
         $editData = User::find($id);

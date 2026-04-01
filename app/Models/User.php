@@ -32,6 +32,14 @@ class User extends Authenticatable
         'email',
         'password',
         'user_type',
+        'mobile',
+        'address',
+        'gender',
+        'image',
+        'cover_image',
+        'status',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
 
     /**
