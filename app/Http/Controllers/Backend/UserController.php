@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct(protected UserService $userService) {}
+
     public function UserView()
     {
         $data['allData'] = User::all();
@@ -39,17 +42,21 @@ class UserController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $user = new User();
-        $user->user_type = $request->user_type;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
+        // Use UserService to create user and send welcome email
+        $result = $this->userService->createUserWithNotification($validatedData);
 
-        $notification = array(
-            'message' => 'User created successfully.',
-            'alert-type' => 'success'
-        );
+        if ($result['success']) {
+            $notification = array(
+                'message' => 'User created successfully. Welcome email has been queued.',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => $result['message'],
+                'alert-type' => 'error'
+            );
+        }
+
         return redirect()->route('users.view')->with($notification);
     }
 

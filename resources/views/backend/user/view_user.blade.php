@@ -32,7 +32,15 @@
                                             @foreach ($allData as $key => $userData)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $userData->user_type }}</td>
+                                                    <td>
+                                                        @if ($userData->user_type == 'super_admin')
+                                                            <span class="badge badge-danger">Super Admin</span>
+                                                        @elseif ($userData->user_type == 'admin')
+                                                            <span class="badge badge-success">Admin</span>
+                                                        @elseif ($userData->user_type == 'user')
+                                                            <span class="badge badge-primary">User</span>
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $userData->name }}</td>
                                                     <td>{{ $userData->email }}</td>
                                                     <td>
