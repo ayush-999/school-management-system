@@ -6,14 +6,14 @@
             <!-- Main content -->
             <section class="content">
                 <a href="{{ route('users.view') }}" class="btn btn-outline btn-secondary mt-2 btn-sm">
-                   <i class="fa fa-arrow-left mr-2"></i> Back
+                    <i class="fa fa-arrow-left mr-2"></i> Back
                 </a>
                 <!-- Basic Forms -->
                 <div class="row">
                     <div class="col-md-6 col-12 mx-auto mt-4">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h4 class="box-title">Edit User</h4>
+                                <h4 class="box-title">Edit <i>{{ $editData->name }}</i> profile</h4>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -29,7 +29,7 @@
                                                         </h5>
                                                         <div class="controls">
                                                             <select name="user_type" id="user_type" required
-                                                                class="form-control" >
+                                                                class="form-control">
                                                                 <option value="" selected="" disabled="">
                                                                     Select Role
                                                                 </option>
@@ -47,7 +47,8 @@
                                                             <span class="text-danger">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="text" name="name" class="form-control" value="{{ $editData->name }}" required />
+                                                            <input type="text" name="name" class="form-control"
+                                                                value="{{ $editData->name }}" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -57,8 +58,8 @@
                                                             Email Field <span class="text-danger">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="email" name="email" class="form-control" value="{{ $editData->email }}"
-                                                                required />
+                                                            <input type="email" name="email" class="form-control"
+                                                                value="{{ $editData->email }}" required />
                                                         </div>
                                                     </div>
                                                 </div>

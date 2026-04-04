@@ -13,21 +13,22 @@ class ProfileController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::find($id);
-        return view('backend.user.view_profile', compact('user'));
+        return view('backend.user.view_profile', compact('user')); 
     }
 
     public function ProfileEdit()
     {
         $id = Auth::user()->id;
         $editData = User::find($id);
-        return view('backend.user.edit_profile', compact('editData'));
+        $user = Auth::user();
+        return view('backend.user.edit_profile', compact('editData', 'user'));
     }
 
-    public function ProfileUpdate(Request $request, $id)
+    public function ProfileStore(Request $request, $id)
     {
         // Validation
         $validatedData = $request->validate([
-            'user_type' => 'required',
+            'user_type' => 'nullable',
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'gender' => 'nullable',
@@ -43,7 +44,6 @@ class ProfileController extends Controller
         ]);
 
         $data = User::find($id);
-        $data->user_type = $request->user_type;
         $data->name = $request->name;
         $data->email = $request->email;
         $data->gender = $request->gender;
@@ -75,12 +75,32 @@ class ProfileController extends Controller
             $data->address = implode("\n", array_filter($addressLines));
         }
 
+        if ($request->file('profile_image')) {
+            $file = $request->file('profile_image');
+            @unlink(public_path('upload/user_images/' . $data->image));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/user_images'), $filename);
+            $data->image = $filename;
+        }
+
+        if ($request->file('cover_image')) {
+            $file = $request->file('cover_image');
+            @unlink(public_path('upload/user_images/' . $data->cover_image));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/user_images'), $filename);
+            $data->cover_image = $filename;
+        }
+
         $data->save();
 
         $notification = array(
-            'message' => 'User updated successfully.',
-            'alert-type' => 'info'
+            'message' => 'User profile updated successfully.',
+            'alert-type' => 'success'
         );
-        return redirect()->route('users.view')->with($notification);
+        return redirect()->route('profile.view')->with($notification);
     }
+
+    // End Methods
+
+
 }

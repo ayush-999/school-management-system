@@ -17,8 +17,8 @@
     <!-- sidebar menu-->
     <ul class="sidebar-menu" data-widget="tree">
 
-      <li>
-        <a href="index.html">
+      <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
+        <a href="/dashboard">
           <i data-feather="pie-chart"></i>
           <span>Dashboard</span>
         </a>
@@ -26,7 +26,7 @@
 
       <li class="header nav-small-cap">User Interface</li>
 
-      <li class="treeview">
+      <li class="{{ request()->routeIs('profile.*') || request()->routeIs('users.*') ? 'treeview active' : 'treeview' }}">
         <a href="#">
           <i data-feather="user"></i>
           <span>Manage User</span>
@@ -35,8 +35,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{ route('profile.view') }}"><i class="ti-more"></i>Your Profile</a></li>
-          <li><a href="{{ route('users.view') }}"><i class="ti-more"></i>View Users</a></li>
+          <li class="{{ request()->routeIs('profile.*') ? 'active' : '' }}"><a href="{{ route('profile.view') }}"><i class="ti-more"></i>Your Profile</a></li>
+          <li class="{{ request()->routeIs('users.*') ? 'active' : '' }}"><a href="{{ route('users.view') }}"><i class="ti-more"></i>View Users</a></li>
         </ul>
       </li>
     </ul>

@@ -6,7 +6,7 @@
             <!-- Main content -->
             <section class="content">
                 <a href="{{ route('users.view') }}" class="btn btn-outline btn-secondary mt-2 btn-sm">
-                   <i class="fa fa-arrow-left mr-2"></i> Back
+                    <i class="fa fa-arrow-left mr-2"></i> Back
                 </a>
                 <!-- Basic Forms -->
                 <div class="row">
@@ -74,7 +74,8 @@
                                                     </div>
                                                     <div class="form-group mb-4">
                                                         <div class="checkbox">
-                                                            <input type="checkbox" id="show_user_password" class="filled-in chk-col-success">
+                                                            <input type="checkbox" id="show_user_password"
+                                                                class="filled-in chk-col-success">
                                                             <label for="show_user_password">Show Password</label>
                                                         </div>
                                                     </div>
@@ -86,8 +87,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </form>
                                     </div>
-                                    </form>
                                 </div>
                                 <!-- /.col -->
                             </div>

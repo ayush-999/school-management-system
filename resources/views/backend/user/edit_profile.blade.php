@@ -13,13 +13,13 @@
                     <div class="col-md-12 col-12 mx-auto mt-4">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h4 class="box-title">Edit user profile</h4>
+                                <h4 class="box-title">Edit <i>{{ $editData->name }}</i> profile</h4>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col">
-                                        <form method="POST" action="{{ route('profile.update', $editData->id) }}"
+                                        <form method="POST" action="{{ route('profile.store', $editData->id) }}"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
@@ -42,7 +42,7 @@
                                                                                 name="profile_image" accept="image/*">
                                                                             <div class="image-wrapper">
                                                                                 <img id="profile_image_preview"
-                                                                                    src="{{ $editData->profile_image ? url('upload/user_images/' . $editData->profile_image) : url('upload/no_image.jpg') }}"
+                                                                                    src="{{ (!empty($editData->image)) ? url('upload/user_images/' . $editData->image) : url('upload/no_image.jpg') }}"
                                                                                     alt="Profile Image"
                                                                                     class="profile_image_preview img-fluid">
                                                                                 <div class="upload-overlay">
@@ -62,7 +62,7 @@
                                                                                 accept="image/*">
                                                                             <div class="image-wrapper-cover">
                                                                                 <img id="cover_image_preview"
-                                                                                    src="{{ $editData->cover_image ? url('upload/user_images/' . $editData->cover_image) : asset('backend/images/gallery/full/10.jpg') }}"
+                                                                                    src="{{ (!empty($editData->cover_image)) ? url('upload/user_images/' . $editData->cover_image) : asset('backend/images/gallery/full/10.jpg') }}"
                                                                                     alt="Cover Image"
                                                                                     class="cover_image_preview img-fluid">
                                                                                 <div class="upload-overlay-cover">
@@ -81,7 +81,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <select name="user_type" id="user_type" required
-                                                                        class="form-control">
+                                                                        class="form-control" disabled>
                                                                         <option value="" selected="" disabled="">
                                                                             Select Role
                                                                         </option>
@@ -121,8 +121,9 @@
                                                                     User Mobile
                                                                 </h5>
                                                                 <div class="controls">
-                                                                    <input type="text" name="mobile" class="form-control" id="mobile"
-                                                                        value="{{ $editData->mobile }}" required />
+                                                                    <input type="text" name="mobile" class="form-control"
+                                                                        id="mobile" value="{{ $editData->mobile }}"
+                                                                        required />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -134,7 +135,7 @@
                                                                 <div class="controls d-flex gap-3 align-items-center mt-3">
                                                                     <div class="form-check pl-0">
                                                                         <input class="form-check-input" type="radio"
-                                                                            name="gender" id="gender_male" value="male" {{ $editData->gender == 'Male' ? 'checked' : '' }}
+                                                                            name="gender" id="gender_male" value="male" {{ strtolower($editData->gender) == 'male' ? 'checked' : '' }}
                                                                             required />
                                                                         <label class="form-check-label" for="gender_male">
                                                                             Male
@@ -143,14 +144,14 @@
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="radio"
                                                                             name="gender" id="gender_female" value="female"
-                                                                            {{ $editData->gender == 'Female' ? 'checked' : '' }} required />
+                                                                            {{ strtolower($editData->gender) == 'female' ? 'checked' : '' }} required />
                                                                         <label class="form-check-label" for="gender_female">
                                                                             Female
                                                                         </label>
                                                                     </div>
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="radio"
-                                                                            name="gender" id="gender_other" value="other" {{ $editData->gender == 'Other' ? 'checked' : '' }}
+                                                                            name="gender" id="gender_other" value="other" {{ strtolower($editData->gender) == 'other' ? 'checked' : '' }}
                                                                             required />
                                                                         <label class="form-check-label" for="gender_other">
                                                                             Other
@@ -167,6 +168,49 @@
                                                         <div class="col-12">
                                                             <h5 class="mb-3 mt-3">Address Information</h5>
                                                         </div>
+                                                        @php
+                                                            // Parse the existing address string
+                                                            $address_lines = [];
+                                                            if (!empty($editData->address)) {
+                                                                $address_lines = array_filter(explode("\n", $editData->address));
+                                                            }
+
+                                                            // Extract individual address components
+                                                            $recipient_name = $address_lines[0] ?? '';
+                                                            $house_building = $address_lines[1] ?? '';
+                                                            $street_colony = $address_lines[2] ?? '';
+                                                            $landmark = '';
+                                                            $city = '';
+                                                            $pincode = '';
+                                                            $state = '';
+                                                            $country = 'India';
+
+                                                            // If there are more than 3 lines, parse them further
+                                                            if (count($address_lines) > 3) {
+                                                                for ($i = 3; $i < count($address_lines); $i++) {
+                                                                    $line = trim($address_lines[$i]);
+                                                                    
+                                                                    // Check if line contains city and pincode (format: "City - PINCODE")
+                                                                    if (preg_match('/^(.+?)\s*-\s*(\d{6})$/', $line, $matches)) {
+                                                                        $city = trim($matches[1]);
+                                                                        $pincode = trim($matches[2]);
+                                                                    }
+                                                                    // Check if line contains state and country (format: "State, Country")
+                                                                    elseif (strpos($line, ',') !== false) {
+                                                                        $parts = explode(',', $line);
+                                                                        $state = trim($parts[0]);
+                                                                        $country = trim($parts[1] ?? 'India');
+                                                                    }
+                                                                    // Otherwise, treat as landmark
+                                                                    else {
+                                                                        if (empty($landmark)) {
+                                                                            $landmark = $line;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        @endphp
+
                                                         <div class="col-12">
                                                             <div class="form-group mb-4">
                                                                 <h5>
@@ -174,7 +218,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <input type="text" name="address_recipient_name"
-                                                                        class="form-control" placeholder="" required />
+                                                                        class="form-control" value="{{ $recipient_name }}" placeholder="" required />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -185,7 +229,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <input type="text" name="address_house_building"
-                                                                        class="form-control" placeholder="" required />
+                                                                        class="form-control" value="{{ $house_building }}" placeholder="" required />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -196,7 +240,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <input type="text" name="address_street_colony"
-                                                                        class="form-control" placeholder="" required />
+                                                                        class="form-control" value="{{ $street_colony }}" placeholder="" required />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -208,7 +252,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <input type="text" name="address_landmark"
-                                                                        class="form-control" placeholder="" />
+                                                                        class="form-control" value="{{ $landmark }}" placeholder="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -219,7 +263,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <input type="text" name="address_city"
-                                                                        class="form-control" placeholder="" required />
+                                                                        class="form-control" value="{{ $city }}" placeholder="" required />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -230,7 +274,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <input type="text" name="address_pincode"
-                                                                        class="form-control" placeholder="6-Digit PIN Code"
+                                                                        class="form-control" value="{{ $pincode }}" placeholder="6-Digit PIN Code"
                                                                         pattern="[0-9]{6}" required />
                                                                 </div>
                                                             </div>
@@ -242,7 +286,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <input type="text" name="address_state"
-                                                                        class="form-control" placeholder="" required />
+                                                                        class="form-control" value="{{ $state }}" placeholder="" required />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -253,7 +297,7 @@
                                                                 </h5>
                                                                 <div class="controls">
                                                                     <input type="text" name="address_country"
-                                                                        class="form-control" value="India" required />
+                                                                        class="form-control" value="{{ $country }}" required />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -283,49 +327,37 @@
     </div>
     <!-- /.content-wrapper -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        $(document).ready(function () {
             // Profile Image Preview
-            const profileImageInput = document.getElementById('profile_image_input');
-            if (profileImageInput) {
-                profileImageInput.addEventListener('change', function (e) {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function (event) {
-                            const preview = document.getElementById('profile_image_preview');
-                            if (preview) {
-                                preview.src = event.target.result;
-                            }
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
+            $('#profile_image_input').on('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        $('#profile_image_preview').attr('src', event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
 
             // Cover Image Preview
-            const coverImageInput = document.getElementById('cover_image_input');
-            if (coverImageInput) {
-                coverImageInput.addEventListener('change', function (e) {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function (event) {
-                            const preview = document.getElementById('cover_image_preview');
-                            if (preview) {
-                                preview.src = event.target.result;
-                            }
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
+            $('#cover_image_input').on('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        $('#cover_image_preview').attr('src', event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
 
             // Initialize intlTelInput for mobile field
             const mobileInput = document.querySelector("#mobile");
             if (mobileInput && window.intlTelInput) {
                 window.intlTelInput(mobileInput, {
                     initialCountry: "in",
-                    allowDropdown:false,
+                    allowDropdown: false,
                     preferredCountries: ["in"],
                     separateDialCode: true,
                     utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.1/build/js/utils.js"

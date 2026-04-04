@@ -29,19 +29,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($allData as $key => $user)
+                                            @foreach ($allData as $key => $userData)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $user->user_type }}</td>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $userData->user_type }}</td>
+                                                    <td>{{ $userData->name }}</td>
+                                                    <td>{{ $userData->email }}</td>
                                                     <td>
-                                                        @if(!in_array($user->user_type, ['super_admin']))
-                                                            <a href="{{ route('users.edit', $user->id) }}"
+                                                        @if(!in_array($userData->user_type, ['super_admin']))
+                                                            <a href="{{ route('users.edit', $userData->id) }}"
                                                                 class="btn btn-info btn-sm">
                                                                 <i class="fa fa-edit mr-1"></i> Edit
                                                             </a>
-                                                            <a href="{{ route('users.delete', $user->id) }}"
+                                                            <a href="{{ route('users.delete', $userData->id) }}"
                                                                 class="btn btn-danger btn-sm" id="delete">
                                                                 <i class="fa fa-trash mr-1"></i> Delete
                                                             </a>

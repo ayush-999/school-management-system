@@ -1,14 +1,15 @@
 .widget-user .widget-user-image {
     position: absolute;
     top: 150px;
-    left: 81%;
+    left: 75%;
     margin-left: -45px;
 }
 
 .widget-user .widget-user-image > img {
     width: 120px;
-    height: auto;
+    height: 120px;
     border-width: 3px;
+    object-fit: cover;
     border-style: solid;
     border-color: rgb(255, 255, 255);
     border-image: initial;
@@ -144,6 +145,6 @@
     display: block;
 }
 
-.iti--inline-dropdown{
+.iti--inline-dropdown {
     width: 100%;
 }
