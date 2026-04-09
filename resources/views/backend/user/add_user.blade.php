@@ -43,6 +43,19 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group mb-4">
                                                         <h5>
+                                                            Status <span class="text-danger">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="status" id="status" required class="form-control">
+                                                                <option value="" selected="" disabled="">Select Status
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-12">
+                                                    <div class="form-group mb-4">
+                                                        <h5>
                                                             User Name
                                                             <span class="text-danger">*</span>
                                                         </h5>
@@ -51,6 +64,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-12">
                                                     <div class="form-group mb-4">
                                                         <h5>

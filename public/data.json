@@ -1,0 +1,78 @@
+{
+  "states": [
+    "Andaman and Nicobar",
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chandigarh",
+    "Chhattisgarh",
+    "Dadra and Nagar Haveli",
+    "Daman and Diu",
+    "Delhi",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Ladakh",
+    "Lakshadweep",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Puducherry",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal"
+  ],
+  "statuses": [
+    {
+      "value": "active",
+      "label": "Active"
+    },
+    {
+      "value": "inactive",
+      "label": "Inactive"
+    },
+    {
+      "value": "blocked",
+      "label": "Blocked"
+    },
+    {
+      "value": "deactivated",
+      "label": "Deactivated"
+    },
+    {
+      "value": "activated",
+      "label": "Activated"
+    },
+    {
+      "value": "no_longer_available",
+      "label": "No Longer Available"
+    },
+    {
+      "value": "suspended",
+      "label": "Suspended"
+    },
+    {
+      "value": "archived",
+      "label": "Archived"
+    },
+    {
+      "value": "deleted",
+      "label": "Deleted"
+    }
+  ]
+}

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
@@ -13,7 +16,7 @@ class ProfileController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::find($id);
-        return view('backend.user.view_profile', compact('user')); 
+        return view('backend.user.view_profile', compact('user'));
     }
 
     public function ProfileEdit()
@@ -100,7 +103,30 @@ class ProfileController extends Controller
         return redirect()->route('profile.view')->with($notification);
     }
 
-    // End Methods
+    public function PasswordView()
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        return view('backend.user.edit_password', compact('user'));
+    }
 
+    public function PasswordUpdate(Request $request)
+    {
+        // Validation
+        $validatedData = $request->validate([
+            'oldpassword' => 'required',
+            'password' => 'required|confirmed|min:8',
+        ]);
 
+    	$hashedPassword = Auth::user()->password;
+    	if (Hash::check($request->oldpassword,$hashedPassword)) {
+    		$user = User::find(Auth::id());
+    		$user->password = Hash::make($request->password);
+    		$user->save();
+    		Auth::logout();
+    		return redirect()->route('login');
+    	}else{
+    		return redirect()->back();
+    	}
+    }
 }

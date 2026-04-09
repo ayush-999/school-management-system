@@ -285,8 +285,11 @@
                                                                     State
                                                                 </h5>
                                                                 <div class="controls">
-                                                                    <input type="text" name="address_state"
-                                                                        class="form-control" value="{{ $state }}" placeholder="" required />
+                                                                    <select name="address_state" id="address_state"
+                                                                        class="form-control" required>
+                                                                        <option value="" selected="" disabled="">Select State</option>
+                                                                        <option value="{{ $state }}" {{ !empty($state) ? 'selected' : '' }}>{{ $state }}</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>

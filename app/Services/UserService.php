@@ -33,7 +33,7 @@ class UserService
                 'email' => $data['email'],
                 'password' => Hash::make($plainPassword), // Hash before storing
                 'user_type' => $data['user_type'] ?? 'user',
-                'status' => $data['status'] ?? 1,
+                'status' => $data['status'] ?? 'active',
             ]);
 
             // Send welcome email with the plain password

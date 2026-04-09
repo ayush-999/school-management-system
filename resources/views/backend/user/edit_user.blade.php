@@ -40,7 +40,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 col-12">
+                                                                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group mb-4">
+                                                        <h5>
+                                                            Status <span class="text-danger">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="status" id="status" required class="form-control">
+                                                                <option value="" selected="" disabled="">Select Status</option>
+                                                                <option value="active" {{ $editData->status == 'active' ? 'selected' : '' }}>Active</option>
+                                                                <option value="inactive" {{ $editData->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                                                <option value="blocked" {{ $editData->status == 'blocked' ? 'selected' : '' }}>Blocked</option>
+                                                                <option value="deactivated" {{ $editData->status == 'deactivated' ? 'selected' : '' }}>Deactivated</option>
+                                                                <option value="activated" {{ $editData->status == 'activated' ? 'selected' : '' }}>Activated</option>
+                                                                <option value="no_longer_available" {{ $editData->status == 'no_longer_available' ? 'selected' : '' }}>No Longer Available</option>
+                                                                <option value="suspended" {{ $editData->status == 'suspended' ? 'selected' : '' }}>Suspended</option>
+                                                                <option value="archived" {{ $editData->status == 'archived' ? 'selected' : '' }}>Archived</option>
+                                                                <option value="deleted" {{ $editData->status == 'deleted' ? 'selected' : '' }}>Deleted</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-12">
                                                     <div class="form-group mb-4">
                                                         <h5>
                                                             User Name
@@ -52,6 +73,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-12">
                                                     <div class="form-group mb-4">
                                                         <h5>

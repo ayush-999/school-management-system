@@ -40,6 +40,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
+            'status' => 'required|in:active,inactive,blocked,deactivated,activated,no_longer_available,suspended,archived,deleted',
         ]);
 
         // Use UserService to create user and send welcome email
@@ -68,12 +69,14 @@ class UserController extends Controller
             'user_type' => 'required',
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
+            'status' => 'required|in:active,inactive,blocked,deactivated,activated,no_longer_available,suspended,archived,deleted',
         ]);
 
         $data = User::find($id);
         $data->user_type = $request->user_type;
         $data->name = $request->name;
         $data->email = $request->email;
+        $data->status = $request->status;
         $data->save();
 
         $notification = array(

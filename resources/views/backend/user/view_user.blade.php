@@ -25,7 +25,8 @@
                                                 <th>Role</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Action</th>
+                                                <th>Status</th>
+                                                <th></th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -44,6 +45,23 @@
                                                     <td>{{ $userData->name }}</td>
                                                     <td>{{ $userData->email }}</td>
                                                     <td>
+                                                        @if($userData->status == 'active')
+                                                            <span class="badge badge-success">Active</span>
+                                                        @elseif($userData->status == 'inactive')
+                                                            <span class="badge badge-secondary">Inactive</span>
+                                                        @elseif($userData->status == 'blocked')
+                                                            <span class="badge badge-danger">Blocked</span>
+                                                        @elseif($userData->status == 'suspended')
+                                                            <span class="badge badge-warning">Suspended</span>
+                                                        @elseif($userData->status == 'deactivated')
+                                                            <span class="badge badge-info">Deactivated</span>
+                                                        @elseif($userData->status == 'archived')
+                                                            <span class="badge badge-dark">Archived</span>
+                                                        @else
+                                                            <span class="badge badge-secondary">{{ $userData->status ?? 'N/A' }}</span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="user-btn-wrapper">
                                                         @if(!in_array($userData->user_type, ['super_admin']))
                                                             <a href="{{ route('users.edit', $userData->id) }}"
                                                                 class="btn btn-info btn-sm">

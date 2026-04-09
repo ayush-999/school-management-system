@@ -8,14 +8,26 @@
                 <div class="row">
                     <div class="col-lg-5 col-12 mx-auto mt-4">
                         <div class="box box-widget widget-user">
-                            <div class="box-header with-border widget-cover-image bg-bubbles-white"
-                                style="background: url('{{(!empty($user->cover_image)) ? url('upload/user_images/' . $user->cover_image) : url('backend/images/gallery/full/10.jpg') }}') center center;">
+                            <div class="box-header with-border bg-bubbles-white p-0">
+                                <img class="widget-cover-image "
+                                    src="{{(!empty($user->cover_image)) ? url('upload/user_images/' . $user->cover_image) : url('backend/images/gallery/full/10.jpg') }}"
+                                    alt="Cover Image">
                             </div>
                             <div class="box-body p-4">
                                 <h4 class="widget-user-username">
-                                    <b>{{ (!empty($user->name)) ? $user->name : 'Not provided' }}</b></h4>
+                                    <b>{{ (!empty($user->name)) ? $user->name : 'Not provided' }}</b>
+                                </h4>
                                 <h6 class="widget-user-desc mt-2"><b>Role:</b>
-                                    {{ (!empty($user->user_type)) ? $user->user_type : 'Not provided' }}</h6>
+                                    @if($user->user_type == 'super_admin')
+                                        <span class="badge badge-danger">Super Admin</span>
+                                    @elseif($user->user_type == 'admin')
+                                        <span class="badge badge-success">Admin</span>
+                                    @elseif($user->user_type == 'user')
+                                        <span class="badge badge-primary">User</span>
+                                    @else
+                                        <span class="badge badge-secondary">Unknown</span>
+                                    @endif
+                                </h6>
                                 <h6 class="widget-user-desc"><b>Email:</b>
                                     {{ (!empty($user->email)) ? $user->email : 'Not provided' }}</h6>
                                 <h6 class="widget-user-desc mb-4"><b>Address:</b>
@@ -48,8 +60,21 @@
                                         <div class="col-sm-4">
                                             <div class="description-block">
                                                 <h5 class="description-header">Status</h5>
-                                                <span
-                                                    class="description-text">{{ (!empty($user->status)) ? $user->status : 'Not provided' }}</span>
+                                                @if($user->status == 'active')
+                                                    <span class="badge badge-success">Active</span>
+                                                @elseif($user->status == 'inactive')
+                                                    <span class="badge badge-secondary">Inactive</span>
+                                                @elseif($user->status == 'blocked')
+                                                    <span class="badge badge-danger">Blocked</span>
+                                                @elseif($user->status == 'suspended')
+                                                    <span class="badge badge-warning">Suspended</span>
+                                                @elseif($user->status == 'deactivated')
+                                                    <span class="badge badge-info">Deactivated</span>
+                                                @elseif($user->status == 'archived')
+                                                    <span class="badge badge-dark">Archived</span>
+                                                @else
+                                                    <span class="badge badge-secondary">{{ $user->status ?? 'N/A' }}</span>
+                                                @endif
                                             </div>
                                             <!-- /.description-block -->
                                         </div>
@@ -63,7 +88,7 @@
                                     <i class="fa fa-edit mr-1"></i>
                                     Edit Profile
                                 </a>
-                                <a href="" class="btn btn-secondary btn-block btn-outline">
+                                <a href="{{ route('password.view') }}" class="btn btn-secondary btn-block btn-outline">
                                     <i class="fa fa-lock mr-1"></i>
                                     Change Password
                                 </a>

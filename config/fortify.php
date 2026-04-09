@@ -145,10 +145,10 @@ return [
 
     'features' => [
         Features::registration(),
-        Features::resetPasswords(),
+        // Features::resetPasswords(), 
         // Features::emailVerification(),
         Features::updateProfileInformation(),
-        Features::updatePasswords(),
+        // Features::updatePasswords(), // DISABLED - Using custom password update in ProfileController
         Features::twoFactorAuthentication([
             'confirm' => true,
             'confirmPassword' => true,
