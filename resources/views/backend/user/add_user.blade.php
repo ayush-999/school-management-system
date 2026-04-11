@@ -36,6 +36,10 @@
                                                                 <option value="super_admin">Super Admin</option>
                                                                 <option value="admin">Admin</option>
                                                                 <option value="user">User</option>
+                                                                <option value="manager">Manager</option>
+                                                                <option value="employee">Employee</option>
+                                                                <option value="student">Student</option>
+                                                                <option value="teacher">Teacher</option>
                                                             </select>
                                                         </div>
                                                     </div>

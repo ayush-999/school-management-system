@@ -26,7 +26,7 @@
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Status</th>
-                                                <th></th>Action</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -40,6 +40,16 @@
                                                             <span class="badge badge-success">Admin</span>
                                                         @elseif ($userData->user_type == 'user')
                                                             <span class="badge badge-primary">User</span>
+                                                        @elseif ($userData->user_type == 'manager')
+                                                            <span class="badge badge-info">Manager</span>
+                                                        @elseif ($userData->user_type == 'employee')
+                                                            <span class="badge badge-warning">Employee</span>
+                                                        @elseif ($userData->user_type == 'student')
+                                                            <span class="badge badge-secondary">Student</span>
+                                                        @elseif ($userData->user_type == 'teacher')
+                                                            <span class="badge badge-dark">Teacher</span>
+                                                        @else
+                                                            <span class="badge badge-secondary">{{ $userData->user_type ?? 'N/A' }}</span>
                                                         @endif
                                                     </td>
                                                     <td>{{ $userData->name }}</td>
@@ -61,7 +71,7 @@
                                                             <span class="badge badge-secondary">{{ $userData->status ?? 'N/A' }}</span>
                                                         @endif
                                                     </td>
-                                                    <td class="user-btn-wrapper">
+                                                    <td class="admin-table-btn-wrapper">
                                                         @if(!in_array($userData->user_type, ['super_admin']))
                                                             <a href="{{ route('users.edit', $userData->id) }}"
                                                                 class="btn btn-info btn-sm">

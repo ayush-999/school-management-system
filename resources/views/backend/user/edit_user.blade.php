@@ -36,22 +36,28 @@
                                                                 <option value="super_admin" {{ $editData->user_type == 'super_admin' ? 'selected' : '' }}>Super Admin</option>
                                                                 <option value="admin" {{ $editData->user_type == 'admin' ? 'selected' : '' }}>Admin</option>
                                                                 <option value="user" {{ $editData->user_type == 'user' ? 'selected' : '' }}>User</option>
+                                                                <option value="manager" {{ $editData->user_type == 'manager' ? 'selected' : '' }}>Manager</option>
+                                                                <option value="employee" {{ $editData->user_type == 'employee' ? 'selected' : '' }}>Employee</option>
+                                                                <option value="student" {{ $editData->user_type == 'student' ? 'selected' : '' }}>Student</option>
+                                                                <option value="teacher" {{ $editData->user_type == 'teacher' ? 'selected' : '' }}>Teacher</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                                                                <div class="col-md-6 col-12">
+                                                <div class="col-md-6 col-12">
                                                     <div class="form-group mb-4">
                                                         <h5>
                                                             Status <span class="text-danger">*</span>
                                                         </h5>
                                                         <div class="controls">
                                                             <select name="status" id="status" required class="form-control">
-                                                                <option value="" selected="" disabled="">Select Status</option>
+                                                                <option value="" selected="" disabled="">Select Status
+                                                                </option>
                                                                 <option value="active" {{ $editData->status == 'active' ? 'selected' : '' }}>Active</option>
                                                                 <option value="inactive" {{ $editData->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
                                                                 <option value="blocked" {{ $editData->status == 'blocked' ? 'selected' : '' }}>Blocked</option>
-                                                                <option value="deactivated" {{ $editData->status == 'deactivated' ? 'selected' : '' }}>Deactivated</option>
+                                                                <option value="deactivated" {{ $editData->status == 'deactivated' ? 'selected' : '' }}>
+                                                                    Deactivated</option>
                                                                 <option value="activated" {{ $editData->status == 'activated' ? 'selected' : '' }}>Activated</option>
                                                                 <option value="no_longer_available" {{ $editData->status == 'no_longer_available' ? 'selected' : '' }}>No Longer Available</option>
                                                                 <option value="suspended" {{ $editData->status == 'suspended' ? 'selected' : '' }}>Suspended</option>

@@ -24,9 +24,10 @@
         </a>
       </li>
 
-      <li class="header nav-small-cap">User Interface</li>
+      <li class="header nav-small-cap">User Management</li>
 
-      <li class="{{ request()->routeIs('profile.*') || request()->routeIs('users.*') ? 'treeview active' : 'treeview' }}">
+      <li
+        class="{{ request()->routeIs('password.*') || request()->routeIs('profile.*') || request()->routeIs('users.*') || request()->routeIs('permissions.*') ? 'treeview active' : 'treeview' }}">
         <a href="#">
           <i data-feather="user"></i>
           <span>Manage User</span>
@@ -35,22 +36,49 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class="{{ request()->routeIs('profile.*') ? 'active' : '' }}"><a href="{{ route('profile.view') }}"><i class="ti-more"></i>Your Profile</a></li>
-          <li class="{{ request()->routeIs('users.*') ? 'active' : '' }}"><a href="{{ route('users.view') }}"><i class="ti-more"></i>View Users</a></li>
+          <li class="{{ request()->routeIs('password.*') || request()->routeIs('profile.*') ? 'active' : '' }}">
+            <a href="{{ route('profile.view') }}">
+              <i class="ti-more"></i>Your Profile
+            </a>
+          </li>
+          <li class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
+            <a href="{{ route('users.view') }}">
+              <i class="ti-more"></i>View Users
+            </a>
+          </li>
+          @if(Auth::user()->hasRole(['super_admin','admin']))
+            <li class="{{ request()->routeIs('permissions.*') ? 'active' : '' }}">
+              <a href="{{ route('permissions.manage') }}">
+                <i class="ti-more"></i>Manage Permissions
+              </a>
+            </li>
+          @endif
         </ul>
+      </li>
+
+      <li class="{{ request()->routeIs('student.class.*') || request()->routeIs('setups.*') ? 'treeview active' : 'treeview' }}">
+        <a href="#">
+          <i data-feather="settings"></i>
+          <span>Setup Management</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ request()->routeIs('student.class.*') ? 'active' : '' }}"">
+            <a href=" {{ route('student.class.view') }}">
+              <i class="ti-more"></i>Student Class
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="{{ request()->routeIs('health.*') ? 'active' : '' }}">
+        <a href="{{ route('health.index') }}">
+          <i data-feather="heart"></i>
+          <span>System Health</span>
+        </a>
       </li>
     </ul>
   </section>
-
-  <div class="sidebar-footer">
-    <!-- item-->
-    <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings"
-      aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
-    <!-- item-->
-    <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i
-        class="ti-email"></i></a>
-    <!-- item-->
-    <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
-        class="ti-lock"></i></a>
-  </div>
 </aside>

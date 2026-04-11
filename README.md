@@ -140,7 +140,69 @@ php artisan migrate:refresh --seed
 
 ---
 
-# ▶️ 6. Run the Project
+## 🔹 4. Health Check Commands
+
+```bash
+php artisan health:check
+```
+
+### ✅ What it does:
+
+* Runs all system health checks
+* Verifies:
+  - Database connectivity
+  - Disk space availability
+  - Environment configuration
+
+### 📌 When to use:
+
+* To verify system status
+* Before deploying to production
+* To monitor application health
+
+---
+
+## 🔹 5. List Health Check Results
+
+```bash
+php artisan health:list
+```
+
+### ✅ What it does:
+
+* Displays saved health check results
+* Shows status history
+
+### 📌 When to use:
+
+* To view the latest health status
+* Monitor trends over time
+
+---
+
+## 🔹 6. System Health Dashboard (Web UI)
+
+After running `php artisan health:check`, you can view health status through the web interface:
+
+```
+http://localhost:8000/health
+```
+
+### ✅ Features:
+
+* Visual health status with color-coded indicators
+* List of all system checks (Database, Disk Space, Environment)
+* Real-time check results and messages
+* Refresh button to re-run checks
+
+### 📌 Access:
+
+* Dashboard menu → **System Health**
+* Or visit `/health` directly (requires authentication)
+
+---
+
+# ▶️ 7. Run the Project
 
 Start Laravel development server:
 
@@ -194,10 +256,13 @@ php artisan migrate --seed
 # 6. Link storage (if using file uploads)
 php artisan storage:link
 
-# 7. Start development server
+# 7. Run health check
+php artisan health:check
+
+# 8. Start development server
 php artisan serve
 
-# 8. (In separate terminal) Start queue worker for email notifications
+# 9. (In separate terminal) Start queue worker for email notifications
 php artisan queue:work
 ```
 
@@ -301,6 +366,7 @@ Before running in production:
 * [ ] Application key generated (`php artisan key:generate`)
 * [ ] `php artisan migrate --seed` run
 * [ ] `php artisan storage:link` executed
+* [ ] `php artisan health:check` executed successfully
 * [ ] Queue worker running (if using database queue)
 * [ ] Files from `public/build/` directory exist (compiled assets)
 

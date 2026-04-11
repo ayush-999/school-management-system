@@ -22,6 +22,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            // Set any existing string values to 1 (active) before converting back to integer
+            \DB::statement("UPDATE users SET status = IF(status = 'active', 1, 0) WHERE status IS NOT NULL");
             $table->tinyInteger('status')->change()->nullable();
         });
     }

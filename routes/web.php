@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\HealthController;
 
 Route::get('/', function () {
     return view(view: 'auth.login');
@@ -31,8 +34,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', [UserController::class, 'UserDelete'])->name('users.delete');
     });
 
+    // Permission Management Routes - Only for admin and super_admin
+    Route::middleware(['role:super_admin|admin'])->prefix('permissions')->group(function () {
+        Route::get('/manage', [PermissionController::class, 'ManagePermissions'])->name('permissions.manage');
+        Route::post('/update', [PermissionController::class, 'UpdateUserPermissions'])->name('permissions.update');
+        Route::post('/assign', [PermissionController::class, 'AssignPermission'])->name('permissions.assign');
+        Route::post('/revoke', [PermissionController::class, 'AssignPermission'])->name('permissions.revoke-permission');
+        Route::get('/user/{id}', [PermissionController::class, 'GetUserPermissions'])->name('permissions.get-user');
+    });
+
     //User Profile and Change Password
-    Route::prefix('profiles')->group(function () {
+    Route::prefix('profile')->group(function () {
         Route::get('/view', [ProfileController::class, 'ProfileView'])->name('profile.view');
         Route::get('/edit/{id}', [ProfileController::class, 'ProfileEdit'])->name('profile.edit');
         Route::post('/store/{id}', [ProfileController::class, 'ProfileStore'])->name('profile.store');
@@ -40,7 +52,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/password/update', [ProfileController::class, 'PasswordUpdate'])->name('password.update');
     });
 
-    // 
+    // Setup Management All Routes
+    Route::prefix('setups')->group(function () {
+        Route::get('/student/class/view', [StudentClassController::class, 'ViewStudent'])->name('student.class.view');
+    });
+
+    // Health Check Routes
+    Route::get('/health', [HealthController::class, 'index'])->name('health.index');
+
 }); 
 
 // End Middleare Auth Route 
