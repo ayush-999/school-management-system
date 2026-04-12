@@ -10,7 +10,7 @@
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between align-items-center">
                                 <h3 class="box-title">Student Class List</h3>
-                                <a href="" class="btn btn-success btn-md">
+                                <a href="{{ route('student.class.add') }}" class="btn btn-success btn-md">
                                     <i class="fa fa-plus mr-1"></i>
                                     Add Student Class
                                 </a>
@@ -27,16 +27,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($allData as $key => $userData)
+                                            @foreach ($allData as $key => $classData)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $userData->name }}</td>
+                                                    <td>{{ $classData->name }}</td>
                                                     <td class="admin-table-btn-wrapper">
-                                                        <a href="{{ route('users.edit', $userData->id) }}"
+                                                        <a href="{{ route('student.class.edit', $classData->id) }}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fa fa-edit mr-1"></i> Edit
                                                         </a>
-                                                        <a href="{{ route('users.delete', $userData->id) }}"
+                                                        <a href="{{ route('student.class.delete', $classData->id) }}"
                                                             class="btn btn-danger btn-sm" id="delete">
                                                             <i class="fa fa-trash mr-1"></i> Delete
                                                         </a>

@@ -54,7 +54,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Setup Management All Routes
     Route::prefix('setups')->group(function () {
-        Route::get('/student/class/view', [StudentClassController::class, 'ViewStudent'])->name('student.class.view');
+        Route::get('/student/class/view', [StudentClassController::class, 'ViewStudentClass'])->name('student.class.view');
+        Route::get('/student/class/add', [StudentClassController::class, 'AddStudentClass'])->name('student.class.add');
+        Route::post('/student/class/store', [StudentClassController::class, 'StoreStudentClass'])->name('student.class.store');
+        Route::get('/student/class/edit/{id}', [StudentClassController::class, 'EditStudentClass'])->name('student.class.edit');
+        Route::post('/student/class/update/{id}', [StudentClassController::class, 'UpdateStudentClass'])->name('student.class.update');
+        Route::get('/student/class/delete/{id}', [StudentClassController::class, 'DeleteStudentClass'])->name('student.class.delete');
+
     });
 
     // Health Check Routes

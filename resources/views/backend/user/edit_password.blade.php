@@ -79,7 +79,7 @@
                                                 <div class="col-12">
                                                     <div class="text-xs-right">
                                                         <input type="submit" class="btn btn-success btn-block"
-                                                            value="Submit" />
+                                                            value="Update Password" />
                                                     </div>
                                                 </div>
                                             </div>

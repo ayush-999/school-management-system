@@ -27,7 +27,7 @@
       <li class="header nav-small-cap">User Management</li>
 
       <li
-        class="{{ request()->routeIs('password.*') || request()->routeIs('profile.*') || request()->routeIs('users.*') || request()->routeIs('permissions.*') ? 'treeview active' : 'treeview' }}">
+        class="{{ request()->routeIs('password.*') || request()->routeIs('profile.*') || request()->routeIs('users.*') ? 'treeview active' : 'treeview' }}">
         <a href="#">
           <i data-feather="user"></i>
           <span>Manage User</span>
@@ -46,17 +46,11 @@
               <i class="ti-more"></i>View Users
             </a>
           </li>
-          @if(Auth::user()->hasRole(['super_admin','admin']))
-            <li class="{{ request()->routeIs('permissions.*') ? 'active' : '' }}">
-              <a href="{{ route('permissions.manage') }}">
-                <i class="ti-more"></i>Manage Permissions
-              </a>
-            </li>
-          @endif
         </ul>
       </li>
 
-      <li class="{{ request()->routeIs('student.class.*') || request()->routeIs('setups.*') ? 'treeview active' : 'treeview' }}">
+      <li
+        class="{{ request()->routeIs('student.class.*') || request()->routeIs('setups.*') || request()->routeIs('permissions.*') ? 'treeview active' : 'treeview' }}">
         <a href="#">
           <i data-feather="settings"></i>
           <span>Setup Management</span>
@@ -67,18 +61,27 @@
         <ul class="treeview-menu">
           <li class="{{ request()->routeIs('student.class.*') ? 'active' : '' }}"">
             <a href=" {{ route('student.class.view') }}">
-              <i class="ti-more"></i>Student Class
+            <i class="ti-more"></i>Student Class
             </a>
           </li>
+          @if(Auth::user()->hasRole(['super_admin', 'admin']))
+            <li class="{{ request()->routeIs('permissions.*') ? 'active' : '' }}">
+              <a href="{{ route('permissions.manage') }}">
+                <i class="ti-more"></i>Manage Permissions
+              </a>
+            </li>
+          @endif
         </ul>
       </li>
 
-      <li class="{{ request()->routeIs('health.*') ? 'active' : '' }}">
-        <a href="{{ route('health.index') }}">
-          <i data-feather="heart"></i>
-          <span>System Health</span>
-        </a>
-      </li>
+      @if(Auth::user()->hasRole(['super_admin', 'admin']))
+        <li class="{{ request()->routeIs('health.*') ? 'active' : '' }}">
+          <a href="{{ route('health.index') }}">
+            <i data-feather="heart"></i>
+            <span>System Health</span>
+          </a>
+        </li>
+      @endif
     </ul>
   </section>
 </aside>
