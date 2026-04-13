@@ -19,13 +19,13 @@
                                 </h4>
                                 <h6 class="widget-user-desc mt-2"><b>Role:</b>
                                     @if($user->user_type == 'super_admin')
-                                        <span class="badge badge-danger">Super Admin</span>
+                                        <span class="badge badge-primary-light">Super Admin</span>
                                     @elseif($user->user_type == 'admin')
-                                        <span class="badge badge-success">Admin</span>
+                                        <span class="badge badge-success-light">Admin</span>
                                     @elseif($user->user_type == 'user')
-                                        <span class="badge badge-primary">User</span>
+                                        <span class="badge badge-warning-light">User</span>
                                     @else
-                                        <span class="badge badge-secondary">Unknown</span>
+                                        <span class="badge badge-danger-light">Unknown</span>
                                     @endif
                                 </h6>
                                 <h6 class="widget-user-desc"><b>Email:</b>
@@ -43,7 +43,7 @@
                                             <div class="description-block">
                                                 <h5 class="description-header">Mobile No</h5>
                                                 <span
-                                                    class="description-text">+91-{{ (!empty($user->mobile)) ? $user->mobile : 'Not provided' }}</span>
+                                                    class="description-text">{{ (!empty($user->mobile)) ? '+91-' . $user->mobile : 'Not provided' }}</span>
                                             </div>
                                             <!-- /.description-block -->
                                         </div>
@@ -61,15 +61,15 @@
                                             <div class="description-block">
                                                 <h5 class="description-header">Status</h5>
                                                 @if($user->status == 'active')
-                                                    <span class="badge badge-success">Active</span>
+                                                    <span class="badge badge-success-light">Active</span>
                                                 @elseif($user->status == 'inactive')
-                                                    <span class="badge badge-secondary">Inactive</span>
+                                                    <span class="badge badge-danger-light">Inactive</span>
                                                 @elseif($user->status == 'blocked')
-                                                    <span class="badge badge-danger">Blocked</span>
+                                                    <span class="badge badge-danger-light">Blocked</span>
                                                 @elseif($user->status == 'suspended')
-                                                    <span class="badge badge-warning">Suspended</span>
+                                                    <span class="badge badge-warning-light">Suspended</span>
                                                 @elseif($user->status == 'deactivated')
-                                                    <span class="badge badge-info">Deactivated</span>
+                                                    <span class="badge badge-info-light">Deactivated</span>
                                                 @elseif($user->status == 'archived')
                                                     <span class="badge badge-dark">Archived</span>
                                                 @else

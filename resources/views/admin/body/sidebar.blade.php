@@ -27,7 +27,7 @@
       <li class="header nav-small-cap">User Management</li>
 
       <li
-        class="{{ request()->routeIs('password.*') || request()->routeIs('profile.*') || request()->routeIs('users.*') ? 'treeview active' : 'treeview' }}">
+        class="{{ request()->routeIs('password.*') || request()->routeIs('profile.*') || request()->routeIs('permissions.*') || request()->routeIs('users.*') ? 'treeview active' : 'treeview' }}">
         <a href="#">
           <i data-feather="user"></i>
           <span>Manage User</span>
@@ -46,16 +46,27 @@
               <i class="ti-more"></i>View Users
             </a>
           </li>
+          @if(Auth::user()->hasRole(['super_admin', 'admin']))
+            <li class="{{ request()->routeIs('permissions.*') ? 'active' : '' }}">
+              <a href="{{ route('permissions.manage') }}">
+                <i class="ti-more"></i>Manage Permissions
+              </a>
+            </li>
+          @endif
         </ul>
       </li>
 
       <li class="{{ 
           request()->routeIs('student.class.*') ||
-          request()->routeIs('student.group.*') ||
-          request()->routeIs('student.year.*') ||
-          request()->routeIs('student.shift.*') ||
-          request()->routeIs('setups.*') ||
-          request()->routeIs('permissions.*') ? 'treeview active' : 'treeview'
+  request()->routeIs('student.group.*') ||
+  request()->routeIs('student.year.*') ||
+  request()->routeIs('student.shift.*') ||
+  request()->routeIs('fees.category.*') ||
+  request()->routeIs('fees.amount.*') ||
+  request()->routeIs('exam.type.*') ||
+  request()->routeIs('subject.*') ||
+  request()->routeIs('assign.subject.*') ||
+  request()->routeIs('setups.*') ? 'treeview active' : 'treeview'
         }}">
         <a href="#">
           <i data-feather="settings"></i>
@@ -65,33 +76,51 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class="{{ request()->routeIs('student.class.*') ? 'active' : '' }}"">
+          <li class="{{ request()->routeIs('student.class.*') ? 'active' : '' }}">
             <a href=" {{ route('student.class.view') }}">
-            <i class="ti-more"></i>Student Class
+              <i class="ti-more"></i>Student Class
             </a>
           </li>
-          <li class="{{ request()->routeIs('student.year.*') ? 'active' : '' }}"">
+          <li class="{{ request()->routeIs('student.year.*') ? 'active' : '' }}">
             <a href=" {{ route('student.year.view') }}">
-            <i class="ti-more"></i>Student Year
+              <i class="ti-more"></i>Student Year
             </a>
           </li>
-          <li class="{{ request()->routeIs('student.group.*') ? 'active' : '' }}"">
+          <li class="{{ request()->routeIs('student.group.*') ? 'active' : '' }}">
             <a href=" {{ route('student.group.view') }}">
-            <i class="ti-more"></i>Student Group
+              <i class="ti-more"></i>Student Group
             </a>
           </li>
-          <li class="{{ request()->routeIs('student.shift.*') ? 'active' : '' }}"">
+          <li class="{{ request()->routeIs('student.shift.*') ? 'active' : '' }}">
             <a href=" {{ route('student.shift.view') }}">
-            <i class="ti-more"></i>Student Shift
+              <i class="ti-more"></i>Student Shift
             </a>
           </li>
-          @if(Auth::user()->hasRole(['super_admin', 'admin']))
-            <li class="{{ request()->routeIs('permissions.*') ? 'active' : '' }}">
-              <a href="{{ route('permissions.manage') }}">
-                <i class="ti-more"></i>Manage Permissions
-              </a>
-            </li>
-          @endif
+          <li class="{{ request()->routeIs('fees.category.*') ? 'active' : '' }}">
+            <a href=" {{ route('fees.category.view') }}">
+              <i class="ti-more"></i>Fees Category
+            </a>
+          </li>
+          <li class="{{ request()->routeIs('fees.amount.*') ? 'active' : '' }}">
+            <a href=" {{ route('fees.amount.view') }}">
+              <i class="ti-more"></i>Fees Amount
+            </a>
+          </li>
+          <li class="{{ request()->routeIs('exam.type.*') ? 'active' : '' }}">
+            <a href=" {{ route('exam.type.view') }}">
+              <i class="ti-more"></i>Exam Type
+            </a>
+          </li>
+          <li class="{{ request()->routeIs('subject.*') ? 'active' : '' }}">
+            <a href=" {{ route('subject.view') }}">
+              <i class="ti-more"></i>Subject
+            </a>
+          </li>
+          <li class="{{ request()->routeIs('assign.subject.*') ? 'active' : '' }}">
+            <a href=" {{ route('assign.subject.view') }}">
+              <i class="ti-more"></i>Assign Subject
+            </a>
+          </li>
         </ul>
       </li>
 
