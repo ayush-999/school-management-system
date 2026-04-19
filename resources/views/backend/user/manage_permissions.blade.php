@@ -86,9 +86,9 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                                            <button type="button" class="waves-effect waves-light btn btn-info btn-circle btn-sm" data-toggle="modal"
                                                                 data-target="#permissionModal{{ $userData->id }}">
-                                                                <i class="fa fa-edit mr-1"></i> Edit
+                                                                <i class="mdi mdi-pencil font-size-16"></i>
                                                             </button>
                                                         </td>
                                                     </tr>

@@ -134,8 +134,8 @@
                                                         class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
                                                             class="mdi mdi-bookmark-plus"></span></a>
                                                     <a href="#"
-                                                        class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                            class="mdi mdi-arrow-right"></span></a>
+                                                        class="waves-effect waves-light btn btn-info btn-circle mx-5">
+                                                        <span class="mdi mdi-arrow-right"></span></a>
                                                 </td>
                                             </tr>
                                             <tr>

@@ -10,9 +10,8 @@
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between align-items-center">
                                 <h3 class="box-title">Assigned Subjects List</h3>
-                                <a href="{{ route('assign.subject.add') }}" class="btn btn-success btn-md">
-                                    <i class="fa fa-plus mr-1"></i>
-                                    Assign Subject
+                                <a href="{{ route('assign.subject.add') }}" class="waves-effect waves-light btn btn-success btn-circle mt-2 btn-sm">
+                                    <i class="mdi mdi-plus font-size-16"></i>
                                 </a>
                             </div>
                             <!-- /.box-header -->
@@ -33,12 +32,12 @@
                                                     <td>{{ $assignedSubjectData['student_class']['name'] }}</td>
                                                     <td class="admin-table-btn-wrapper">
                                                         <a href="{{ route('assign.subject.edit', $assignedSubjectData->class_id) }}"
-                                                            class="btn btn-info btn-sm">
-                                                            <i class="fa fa-edit mr-1"></i> Edit
+                                                            class="waves-effect waves-light btn btn-info btn-circle btn-sm">
+                                                            <i class="mdi mdi-pencil font-size-16"></i>
                                                         </a>
                                                         <a href="{{ route('assign.subject.details', $assignedSubjectData->class_id) }}"
-                                                            class="btn btn-primary btn-sm">
-                                                            <i class="fa fa-eye mr-1"></i> Details
+                                                            class="waves-effect waves-light btn btn-primary btn-circle btn-sm">
+                                                            <i class="fa fa-eye font-size-12"></i> Details
                                                         </a>
                                                     </td>
                                                 </tr>

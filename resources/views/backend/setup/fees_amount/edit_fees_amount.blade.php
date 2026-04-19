@@ -5,8 +5,8 @@
         <div class="container-full">
             <!-- Main content -->
             <section class="content">
-                <a href="{{ route('fees.amount.view') }}" class="btn btn-outline btn-secondary mt-2 btn-sm">
-                    <i class="fa fa-arrow-left mr-2"></i> Back
+                <a href="{{ route('fees.amount.view') }}" class="waves-effect waves-light btn btn-outline btn-secondary btn-circle mt-2 btn-sm">
+                    <span class="mdi mdi-arrow-left font-size-14">
                 </a>
                 <!-- Basic Forms -->
                 <div class="row">
@@ -84,13 +84,13 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3 col-12" style="margin-top: 32px">
+                                                                    <div class="col-md-3 col-12" style="margin-top: 24px">
                                                                         <div class="form-group mb-4">
-                                                                            <span class="btn btn-success addEventMore btn-sm">
-                                                                                <i class="fa fa-plus-circle"></i>
+                                                                            <span class="waves-effect waves-light btn-circle btn btn-success addEventMore btn-sm">
+                                                                                <i class="fa fa-plus-circle font-size-12"></i>
                                                                             </span>
-                                                                            <span class="btn btn-danger removeEventMore btn-sm">
-                                                                                <i class="fa fa-minus-circle"></i>
+                                                                            <span class="waves-effect waves-light btn-circle btn btn-danger removeEventMore btn-sm">
+                                                                                <i class="fa fa-minus-circle font-size-12"></i>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -153,13 +153,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-12" style="margin-top: 32px">
+                    <div class="col-md-3 col-12" style="margin-top: 22px">
                         <div class="form-group mb-4">
-                            <span class="btn btn-success addEventMore btn-sm">
-                                <i class="fa fa-plus-circle"></i>
+                            <span class="waves-effect waves-light btn-circle btn btn-success addEventMore btn-sm">
+                                <i class="fa fa-plus-circle font-size-12"></i>
                             </span>
-                            <span class="btn btn-danger removeEventMore btn-sm">
-                                <i class="fa fa-minus-circle"></i>
+                            <span class="waves-effect waves-light btn-circle btn btn-danger removeEventMore btn-sm">
+                                <i class="fa fa-minus-circle font-size-12"></i>
                             </span>
                         </div>
                     </div>

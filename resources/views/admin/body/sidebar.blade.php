@@ -16,16 +16,13 @@
 
     <!-- sidebar menu-->
     <ul class="sidebar-menu" data-widget="tree">
-
       <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
         <a href="/dashboard">
           <i data-feather="pie-chart"></i>
           <span>Dashboard</span>
         </a>
       </li>
-
       <li class="header nav-small-cap">User Management</li>
-
       <li
         class="{{ request()->routeIs('password.*') || request()->routeIs('profile.*') || request()->routeIs('permissions.*') || request()->routeIs('users.*') ? 'treeview active' : 'treeview' }}">
         <a href="#">
@@ -55,7 +52,6 @@
           @endif
         </ul>
       </li>
-
       <li class="{{ 
           request()->routeIs('student.class.*') ||
   request()->routeIs('student.group.*') ||
@@ -130,7 +126,27 @@
         </ul>
       </li>
 
+      <li
+        class="treeview">
+        <a href="#">
+          <i data-feather="users"></i>
+          <span>Manage Student</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="">
+            <a href="">
+              <i class="ti-more"></i>View Users
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
       @if(Auth::user()->hasRole(['super_admin', 'admin']))
+        <li class="header nav-small-cap">System Info </li>
         <li class="{{ request()->routeIs('health.*') ? 'active' : '' }}">
           <a href="{{ route('health.index') }}">
             <i data-feather="heart"></i>

@@ -5,17 +5,16 @@
         <div class="container-full">
             <!-- Main content -->
             <section class="content">
-                <a href="{{ route('fees.amount.view') }}" class="btn btn-outline btn-secondary mt-2 btn-sm">
-                    <i class="fa fa-arrow-left mr-2"></i> Back
+                <a href="{{ route('fees.amount.view') }}" class="waves-effect waves-light btn btn-outline btn-secondary btn-circle mt-2 btn-sm">
+                    <span class="mdi mdi-arrow-left font-size-14">
                 </a>
                 <div class="row">
                     <div class="col-8 mx-auto">
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between align-items-center">
                                 <h3 class="box-title">Fees Amount Details</h3>
-                                <a href="{{ route('fees.amount.add') }}" class="btn btn-success btn-md">
-                                    <i class="fa fa-plus mr-1"></i>
-                                    Add Fees Amount
+                                <a href="{{ route('fees.amount.add') }}" class="waves-effect waves-light btn-circle btn btn-success btn-sm">
+                                    <i class="mdi mdi-plus font-size-16"></i>
                                 </a>
                             </div>
                             <!-- /.box-header -->

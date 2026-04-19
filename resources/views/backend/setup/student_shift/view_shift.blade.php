@@ -10,9 +10,9 @@
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between align-items-center">
                                 <h3 class="box-title">Student Shift List</h3>
-                                <a href="{{ route('student.shift.add') }}" class="btn btn-success btn-md">
-                                    <i class="fa fa-plus mr-1"></i>
-                                    Add Student Shift
+                                <a href="{{ route('student.shift.add') }}" class="waves-effect waves-light btn-circle btn btn-success btn-sm">
+                                    <i class="mdi mdi-plus font-size-16"></i>
+                                    
                                 </a>
                             </div>
                             <!-- /.box-header -->
@@ -33,12 +33,12 @@
                                                     <td>{{ $shiftData->name }}</td>
                                                     <td class="admin-table-btn-wrapper">
                                                         <a href="{{ route('student.shift.edit', $shiftData->id) }}"
-                                                            class="btn btn-info btn-sm">
-                                                            <i class="fa fa-edit mr-1"></i> Edit
+                                                            class="waves-effect waves-light btn btn-info btn-circle btn-sm">
+                                                            <i class="mdi mdi-pencil font-size-16"></i>
                                                         </a>
                                                         <a href="{{ route('student.shift.delete', $shiftData->id) }}"
-                                                            class="btn btn-danger btn-sm" id="delete">
-                                                            <i class="fa fa-trash mr-1"></i> Delete
+                                                            class="waves-effect waves-light btn btn-danger btn-circle btn-sm" id="delete">
+                                                            <i class="mdi mdi-delete font-size-16"></i>
                                                         </a>
                                                     </td>
                                                 </tr>

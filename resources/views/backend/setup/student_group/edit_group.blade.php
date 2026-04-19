@@ -5,8 +5,8 @@
         <div class="container-full">
             <!-- Main content -->
             <section class="content">
-                <a href="{{ route('student.group.view') }}" class="btn btn-outline btn-secondary mt-2 btn-sm">
-                    <i class="fa fa-arrow-left mr-2"></i> Back
+                <a href="{{ route('student.group.view') }}" class="waves-effect waves-light btn btn-outline btn-secondary btn-circle mt-2 btn-sm">
+                    <span class="mdi mdi-arrow-left font-size-14">
                 </a>
                 <!-- Basic Forms -->
                 <div class="row">
