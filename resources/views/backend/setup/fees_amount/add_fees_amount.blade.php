@@ -80,7 +80,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-3 col-12" style="margin-top: 32px">
+                                                            <div class="col-md-3 col-12" style="margin-top: 34px">
                                                                 <div class="form-group mb-4">
                                                                     <span class="btn btn-success addEventMore btn-sm">
                                                                         <i class="fa fa-plus-circle"></i>
