@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\HealthController;
 use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\Backend\Setup\StudentYearController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectController;
+use App\Http\Controllers\Backend\Setup\DesignationController;
 use App\Http\Controllers\Backend\Setup\ExamTypeController;
 use App\Http\Controllers\Backend\Setup\FeesAmountController;
 use App\Http\Controllers\Backend\Setup\FeesCategoryController;
@@ -134,7 +135,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/assign/subject/update/{class_id}', [AssignSubjectController::class, 'UpdateAssignSubject'])->name('assign.subject.update');
         Route::get('/assign/subject/details/{class_id}', [AssignSubjectController::class, 'DetailsAssignSubject'])->name('assign.subject.details');
 
-        // 
+        // Designation Management Routes
+        Route::get('/designation/view', [DesignationController::class, 'ViewDesignation'])->name('designation.view');
+        Route::get('/designation/add', [DesignationController::class, 'AddDesignation'])->name('designation.add');
+        Route::post('/designation/store', [DesignationController::class, 'StoreDesignation'])->name('designation.store');
+        Route::get('/designation/edit/{id}', [DesignationController::class, 'EditDesignation'])->name('designation.edit');
+        Route::post('/designation/update/{id}', [DesignationController::class, 'UpdateDesignation'])->name('designation.update');
+        Route::get('/designation/delete/{id}', [DesignationController::class, 'DeleteDesignation'])->name('designation.delete');
+
     });
 
     // Health Check Routes

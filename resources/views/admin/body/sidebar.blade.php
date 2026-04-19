@@ -66,6 +66,7 @@
   request()->routeIs('exam.type.*') ||
   request()->routeIs('subject.*') ||
   request()->routeIs('assign.subject.*') ||
+  request()->routeIs('designation.*') ||
   request()->routeIs('setups.*') ? 'treeview active' : 'treeview'
         }}">
         <a href="#">
@@ -121,7 +122,11 @@
               <i class="ti-more"></i>Assign Subject
             </a>
           </li>
-          
+          <li class="{{ request()->routeIs('designation.*') ? 'active' : '' }}">
+            <a href=" {{ route('designation.view') }}">
+              <i class="ti-more"></i>Designation
+            </a>
+          </li>
         </ul>
       </li>
 
